@@ -13,7 +13,9 @@ if (process.env.ENV === "test") {
 
 const bodyParser = require("body-parser");
 const Wine = require("./models/wine");
+const Beer = require("./models/beer");
 const wineRouter = require("./routes/wine-router")(Wine);
+const beerRouter = require("./routes/beer-router")(Beer);
 
 const port = process.env.PORT || 3001;
 
@@ -22,8 +24,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use("/api", wineRouter);
+app.use("/api", beerRouter);
 app.get("/", (req, res) => {
-  res.send("Wine Diary API");
+  res.send("Inner Critic API");
 });
 
 app.server = app.listen(port, () => {

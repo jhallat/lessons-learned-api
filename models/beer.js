@@ -2,12 +2,11 @@ const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 
-const wineModel = new Schema({
+const beerModel = new Schema({
   brandName: { type: String },
-  wineName: { type: String },
-  vintage: { type: Number },
+  style: { type: String },
   description: { type: String },
   rating: { type: Number },
 });
 
-module.exports = mongoose.model("Wine", wineModel);
+module.exports = mongoose.model("Beer", beerModel);
