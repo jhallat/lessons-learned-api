@@ -3,7 +3,9 @@ const beerController = require("../controllers/beer-controller");
 
 const createDTO = (beer) => {
   return {
-    key: beer["_id"],
+    // eslint-disable-next-line no-underscore-dangle
+    key: beer._id,
+    brewer: beer.brewer,
     brandName: beer.brandName,
     style: beer.style,
     description: beer.description,
@@ -32,6 +34,7 @@ const routes = (Beer) => {
     .get((req, res) => res.json(createDTO(req.beer)))
     .put((req, res) => {
       const { beer } = req;
+      beer.brewer = req.body.brewer;
       beer.brandName = req.body.brandName;
       beer.style = req.body.style;
       beer.description = req.body.description;

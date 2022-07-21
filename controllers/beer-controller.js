@@ -2,6 +2,7 @@ const createDTO = (beer) => {
   return {
     // eslint-disable-next-line no-underscore-dangle
     key: beer._id,
+    brewer: beer.brewer,
     brandName: beer.brandName,
     style: beer.style,
     description: beer.description,
@@ -12,9 +13,9 @@ const createDTO = (beer) => {
 const beerController = (Beer) => {
   const post = (req, res) => {
     const beer = new Beer(req.body);
-    if (!req.body.brandName) {
+    if (!req.body.brewer) {
       res.status(400);
-      return res.send("Brand name is required");
+      return res.send("Brewer is required");
     }
     beer.save();
     res.status(201);
